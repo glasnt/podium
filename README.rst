@@ -1,6 +1,9 @@
 Podium
 ======
 
+.. image:: http://pybee.org/project/projects/applications/podium/podium-stage-72.png
+    :target: http://pybee.org/project/projects/applications/podium/
+
 A markup-based slide presentation tool.
 
 Why?
@@ -8,7 +11,7 @@ Why?
 
 Developers go to conferences. And when they do, they need slide decks.
 
-Unfortunately, while presentation tools like Keynote_ and PowerPoint_
+Unfortunately, while presentation tools like `Keynote`_ and `PowerPoint`_
 are great for business presentations, they aren't well suited to the
 needs of developers. The mainstay of developer presentations -- code
 samples -- are generally painful to add to a Keynote presentation.
