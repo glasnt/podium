@@ -9,8 +9,8 @@ strategy:
     mac:
       imageName: macOS-latest
       briefcase.target: macos
-      briefcase.artifact.files: macOS/Podium.app
-      briefcase.artifact.filename: Podium.app
+      briefcase.artifact.files: macOS/
+      briefcase.artifact.filename: Podium-macos.zip
       python.version: 3.7
     windows:
       imageName: windows-latest
