@@ -1,15 +1,22 @@
-pool:
- 
 strategy:
   matrix:
     linux:
-      vmImage: 'ubuntu-latest'
+      imageName: "ubuntu-latest"
       briefcaseTarget: 'linux'
       python.version: '3.7'
-    macos:
-      vmImage: 'macOS-latest'
+    mac:
+      imageName: "macOS-latest"
       briefcaseTarget: 'macos'
       python.version: '3.7'
+    windows:
+      imageName: "windows-latest"
+      briefcaseTarget: 'windows'
+      python.version: '3.7'
+
+  maxParallel: 3
+
+pool:
+  vmImage: $(imageName)
 
 steps:
 - task: UsePythonVersion@0
@@ -19,6 +26,8 @@ steps:
 
 - script: |
     pip install briefcase
+  displayName: 'Install briefcase'
+
+- script: |
     python setup.py '$(briefcaseTarget)'
-    pytest
-  displayName: 'setup'
+  displayName: 'Build podium'
