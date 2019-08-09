@@ -3,17 +3,20 @@ strategy:
     linux:
       imageName: ubuntu-latest
       briefcase.target: linux
-      briefcase.artifact: linux
+      briefcase.artifact.files: linux
+      briefcase.artifact.filename: linux.zip
       python.version: 3.7
     mac:
       imageName: macOS-latest
       briefcase.target: macos
-      briefcase.artifact: macOS/Podium.app
+      briefcase.artifact.files: macOS/Podium.app
+      briefcase.artifact.filename: Podium.app
       python.version: 3.7
     windows:
       imageName: windows-latest
       briefcase.target: windows
-      briefcase.artifact: .
+      briefcase.artifact.files: .
+      briefcase.artifact.filename: Podium-windows.zip
       python.version: 3.7
 
   maxParallel: 3
@@ -35,15 +38,14 @@ steps:
     python setup.py $(briefcase.target)
   displayName: 'Build podium'
 
-#- publish: $(System.DefaultWorkingDirectory)/$(briefcase.artifact)
-#  artifact: Podium-$(briefcase.target)
+- script: ls * 
 
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: $(briefcase.artifact)
+    rootFolderOrFile: $(briefcase.artifact.files)
     includeRootFolder: false
     archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/Podium-$(briefcase.target)-$(Build.BuildId).zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(briefcase.artifact.filename)'
     replaceExistingArchive: true
     verbose: true
 
