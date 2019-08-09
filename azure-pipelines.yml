@@ -29,5 +29,5 @@ steps:
   displayName: 'Install briefcase'
 
 - script: |
-    python setup.py $(briefcaseTarget) -s
+    python setup.py $(briefcaseTarget)
   displayName: 'Build podium'
