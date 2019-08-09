@@ -2,15 +2,18 @@ strategy:
   matrix:
     linux:
       imageName: ubuntu-latest
-      briefcaseTarget: linux
+      briefcase.target: linux
+      briefcase.artifact: './Podium'
       python.version: 3.7
     mac:
       imageName: macOS-latest
-      briefcaseTarget: macos
+      briefcase.target: macos
+      briefcase.artifact: Podium.app
       python.version: 3.7
     windows:
       imageName: windows-latest
-      briefcaseTarget: windows
+      briefcase.target: windows
+      briefcase.artifact: 'app/start.py' 
       python.version: 3.7
 
   maxParallel: 3
@@ -29,5 +32,8 @@ steps:
   displayName: 'Install briefcase'
 
 - script: |
-    python setup.py $(briefcaseTarget)
+    python setup.py $(briefcase.target)
   displayName: 'Build podium'
+
+- publish: $(System.DefaultWorkingDirectory)/$(briefcase.artifact)
+  artifact: Podium-$(briefcase.target)
