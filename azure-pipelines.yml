@@ -1,17 +1,17 @@
 strategy:
   matrix:
     linux:
-      imageName: "ubuntu-latest"
-      briefcaseTarget: 'linux'
-      python.version: '3.7'
+      imageName: ubuntu-latest
+      briefcaseTarget: linux
+      python.version: 3.7
     mac:
-      imageName: "macOS-latest"
-      briefcaseTarget: 'macos'
-      python.version: '3.7'
+      imageName: macOS-latest
+      briefcaseTarget: macos
+      python.version: 3.7
     windows:
-      imageName: "windows-latest"
-      briefcaseTarget: 'windows'
-      python.version: '3.7'
+      imageName: windows-latest
+      briefcaseTarget: windows
+      python.version: 3.7
 
   maxParallel: 3
 
@@ -29,5 +29,5 @@ steps:
   displayName: 'Install briefcase'
 
 - script: |
-    python setup.py '$(briefcaseTarget)'
+    python setup.py $(briefcaseTarget) -s
   displayName: 'Build podium'
