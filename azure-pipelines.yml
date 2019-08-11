@@ -48,5 +48,5 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     #pathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)/$(briefcase.target)'
-    artifactName: Podium-$(briefcase.target)
+    pathtoPublish: '$(briefcase.target)/'
+    artifactName: Podium-$(briefcase.target).zip
