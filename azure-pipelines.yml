@@ -3,20 +3,15 @@ strategy:
     linux:
       imageName: ubuntu-latest
       briefcase.target: linux
-      briefcase.artifact.files: linux
-      briefcase.artifact.filename: linux.zip
       python.version: 3.7
     mac:
       imageName: macOS-latest
       briefcase.target: macos
-      briefcase.artifact.files: macOS/
-      briefcase.artifact.filename: Podium-macos.zip
+      briefcase.artifact.files: macOS
       python.version: 3.7
     windows:
       imageName: windows-latest
       briefcase.target: windows
-      briefcase.artifact.files: .
-      briefcase.artifact.filename: Podium-windows.zip
       python.version: 3.7
 
   maxParallel: 3
@@ -42,10 +37,10 @@ steps:
 
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: $(briefcase.artifact.files)
+    rootFolderOrFile: $(briefcase.target)/
     includeRootFolder: false
     archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(briefcase.artifact.filename)'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(briefcase.target).zip'
     replaceExistingArchive: true
     verbose: true
 
