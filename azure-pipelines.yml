@@ -34,16 +34,16 @@ steps:
   displayName: 'Build podium'
 
 - script: ls * 
-"""
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: $(briefcase.target)/
-    includeRootFolder: false
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(briefcase.target).zip'
-    replaceExistingArchive: true
-    verbose: true
-"""
+
+#- task: ArchiveFiles@2
+#  inputs:
+#    rootFolderOrFile: $(briefcase.target)/
+#    includeRootFolder: false
+#    archiveType: 'zip'
+#    archiveFile: '$(Build.ArtifactStagingDirectory)/$(briefcase.target).zip'
+#    replaceExistingArchive: true
+#    verbose: true
+#"""
 
 - task: PublishBuildArtifacts@1
   inputs:
