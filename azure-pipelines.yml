@@ -26,7 +26,7 @@ steps:
   displayName: 'Use Python $(python.version)'
 
 - script: |
-    pip install briefcase
+    pip install git+git://github.com/glasnt/briefcase@topic/unicode-be-gone
   displayName: 'Install briefcase'
 
 - script: |
