@@ -34,7 +34,7 @@ steps:
   displayName: 'Build podium'
 
 - script: ls * 
-
+"""
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: $(briefcase.target)/
@@ -43,8 +43,10 @@ steps:
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(briefcase.target).zip'
     replaceExistingArchive: true
     verbose: true
+"""
 
 - task: PublishBuildArtifacts@1
   inputs:
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    #pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)/$(briefcase.target)'
     artifactName: Podium-$(briefcase.target)
