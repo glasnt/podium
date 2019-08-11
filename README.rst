@@ -1,5 +1,28 @@
+.. image:: https://beeware.org/project/projects/applications/podium/podium.png
+    :width: 72px
+    :target: https://beeware.org/project/projects/applications/podium
+
 Podium
 ======
+
+.. image:: https://img.shields.io/pypi/pyversions/podium.svg
+    :target: https://pypi.python.org/pypi/podium
+
+.. image:: https://img.shields.io/pypi/v/podium.svg
+    :target: https://pypi.python.org/pypi/podium
+
+.. image:: https://img.shields.io/pypi/status/podium.svg
+    :target: https://pypi.python.org/pypi/podium
+
+.. image:: https://img.shields.io/pypi/l/podium.svg
+    :target: https://github.com/beeware/podium/blob/master/LICENSE
+
+.. image:: https://travis-ci.org/beeware/podium.svg?branch=master
+    :target: https://travis-ci.org/beeware/podium
+
+.. image:: https://badges.gitter.im/beeware/general.svg
+    :target: https://gitter.im/beeware/general
+
 
 A markup-based slide presentation tool.
 
@@ -8,7 +31,7 @@ Why?
 
 Developers go to conferences. And when they do, they need slide decks.
 
-Unfortunately, while presentation tools like Keynote_ and PowerPoint_
+Unfortunately, while presentation tools like `Keynote`_ and `PowerPoint`_
 are great for business presentations, they aren't well suited to the
 needs of developers. The mainstay of developer presentations -- code
 samples -- are generally painful to add to a Keynote presentation.
@@ -30,17 +53,22 @@ the development of a number of HTML-based presentation tools, like prezi_,
 `deck.js`_, `keydown`_ and `showoff`_. These tools exploit the power of HTML5
 to make full screen presentations.
 
-However, by using browser technology as the basis for these tools, they miss one
-very important feature of WYSIWYG presentation tools: presenter mode.
-
+However, by using browser technology as the basis for these tools, they miss
+one very important feature of WYSIWYG presentation tools: presenter mode.
 One of the big features of Keynote and Powerpoint is that they aren't just
 decks of slides -- they have presenter notes and timing tools, and the
 display shown to the audience isn't the same as the display shown to the
-presenter.
+presenter. Web-based presentation tools are often missing presenter mode.
 
-Many of these tools also assume that you have a good WiFi connection, and will
-be able to display your content live off the internet... which if you've ever
-been to a developer conference, you'll know is a risky proposition.
+Or, if they *do* have a presenter mode, they rely on you being able to
+independently resize two separate web browsers, and they won't provide any
+assistance in hiding all the browser toolbars, menus, titlebars, and so on.
+This can be done, but it's awkward.
+
+Many of these tools are also online-only. They assume that you have a good WiFi
+connection, and will be able to display your content live off the internet...
+which if you've ever been to a developer conference, you'll know is a risky
+proposition.
 
 Podium attempts to bridge the gap between these two poles. It is comprised of:
 
@@ -49,8 +77,6 @@ Podium attempts to bridge the gap between these two poles. It is comprised of:
 * A graphical presentation tool that has a presenter display independent of
   the slide display.
 
-.. Keynote: https://www.apple.com/au/iwork/keynote/
-.. PowerPoint: http://office.microsoft.com/en-au/powerpoint/
 .. _prezi: http://prezi.com
 .. _deck.js: http://imakewebthings.com/deck.js/
 .. _keydown: https://github.com/infews/keydown
@@ -59,23 +85,50 @@ Podium attempts to bridge the gap between these two poles. It is comprised of:
 Quickstart
 ----------
 
-To install podium::
+Use `Briefcase`_ to package this repository as a standalone application.
+Install briefcase using `pip install briefcase`, then:
 
-    $ pip install podium
+* **macOS** Run::
 
-Then, you can run podium on a presentation::
+      $ python setup.py macos
+      $ open macOS/Podium.app
 
-    $ podium my-presentation
+  This app file can also be copied into your Applications folder.
 
-Presentations are directories containing content.
+* **Linux** Run::
 
-This will pop up 2 GUI windows, both displaying a test pattern. Controls from here are keyboard
-based:
+     $ python setup.py linux
+     $ ./linux/Podium
 
-* F8 - Go to full screen presentation mode
-* F4 - Switch displays for the slide and presenter
-* Right/left arrows - next/previous slide
-* Command-right/left arrows - first/last slide
+A sample slide deck has been provided in the ``examples`` folder of this
+repository.
+
+If you open this deck, you'll see 2 GUI windows, displaying a test pattern as
+the first slide. Controls from here are keyboard based:
+
+* CMD-P - Enter presentation mode; or, if in presentation mode, Pause timer
+* Esc - Exit presentation mode
+* CMD-Tab - Switch displays
+* Right/Left arrows - Next/previous slide
+* Down/Up arrows - Next/previous slide
+* Enter - Next slide
+* Home/End - first/last slide
+* CMD-A - Switch aspect ratio between 16:9 and 4:3
+* CMD-R - Reload slide deck
+* CMD-T - Reset timer
+
+An example slide deck can be found in the `examples` directory of this
+repository.
+
+Debugging
+---------
+
+If you need to debug the CSS for a slide, you may want to use the "inspect
+element" feature of the webview. You may need to enable manually enable the
+feature at an operating system level:
+
+* **macOS**: at a terminal prompt, run
+  `defaults write NSGlobalDomain WebKitDeveloperExtras -bool true`
 
 Documentation
 -------------
@@ -87,11 +140,12 @@ Community
 
 Podium is part of the `BeeWare suite`_. You can talk to the community through:
 
- * `@pybeeware on Twitter`_
+* `@pybeeware on Twitter`_
 
- * The `BeeWare Users Mailing list`_, for questions about how to use the BeeWare suite.
+* The `beeware/general`_ channel on Gitter.
 
- * The `BeeWare Developers Mailing list`_, for discussing the development of new features in the BeeWare suite, and ideas for new tools for the suite.
+We foster a welcoming and respectful community as described in our
+`BeeWare Community Code of Conduct`_.
 
 Contributing
 ------------
@@ -99,11 +153,14 @@ Contributing
 If you experience problems with Podium, `log them on GitHub`_. If you
 want to contribute code, please `fork the code`_ and `submit a pull request`_.
 
-.. _BeeWare suite: http://pybee.org
-.. _Read The Docs: http://podium.readthedocs.org
+.. _BeeWare suite: https://beeware.org/
+.. _Keynote: https://en.wikipedia.org/wiki/Keynote_(presentation_software)
+.. _PowerPoint: https://en.wikipedia.org/wiki/Microsoft_PowerPoint
+.. _Briefcase: https://github.com/beeware/briefcase
+.. _Read The Docs: https://podium-app.readthedocs.io/en/latest/
 .. _@pybeeware on Twitter: https://twitter.com/pybeeware
-.. _BeeWare Users Mailing list: https://groups.google.com/forum/#!forum/beeware-users
-.. _BeeWare Developers Mailing list: https://groups.google.com/forum/#!forum/beeware-developers
-.. _log them on Github: https://github.com/pybee/podium/issues
-.. _fork the code: https://github.com/pybee/podium
-.. _submit a pull request: https://github.com/pybee/podium/pulls
+.. _beeware/general: https://gitter.im/beeware/general
+.. _BeeWare Community Code of Conduct: https://beeware.org/community/behavior/
+.. _log them on Github: https://github.com/beeware/podium/issues
+.. _fork the code: https://github.com/beeware/podium
+.. _submit a pull request: https://github.com/beeware/podium/pulls

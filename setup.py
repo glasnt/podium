@@ -1,10 +1,10 @@
-#/usr/bin/env python
+#!/usr/bin/env python
 import io
 import re
 from setuptools import setup, find_packages
 
 
-with io.open('./podium/__init__.py', encoding='utf8') as version_file:
+with io.open('./src/podium/__init__.py', encoding='utf8') as version_file:
     version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", version_file.read(), re.M)
     if version_match:
         version = version_match.group(1)
@@ -15,7 +15,6 @@ with io.open('./podium/__init__.py', encoding='utf8') as version_file:
 with io.open('README.rst', encoding='utf8') as readme:
     long_description = readme.read()
 
-
 setup(
     name='podium',
     version=version,
@@ -23,15 +22,22 @@ setup(
     long_description=long_description,
     author='Russell Keith-Magee',
     author_email='russell@keith-magee.com',
-    url='http://pybee.org/bee/podium',
-    packages=find_packages(exclude=['tests']),
-    install_requires=[
-    ],
-    entry_points={
-        'console_scripts': [
-            'podium = podium.__main__:main',
+    url='https://beeware.org/project/projects/applications/podium',
+    packages=find_packages(where="src"),
+    package_dir={"": "src"},
+    package_data={
+        'podium': [
+            'resources/*.html',
+            'resources/*.js',
+            'resources/*.css',
+            'resources/*.png',
+            'resources/themes/default/*.css',
+            'resources/themes/default/*.woff',
         ]
     },
+    include_package_data=True,
+    install_requires=[
+    ],
     license='New BSD',
     classifiers=[
         'Development Status :: 4 - Beta',
@@ -44,16 +50,30 @@ setup(
         'Topic :: Utilities',
     ],
     test_suite='tests',
+    zip_safe=False,
     options={
         'app': {
             'formal_name': 'Podium',
-            'bundle': 'org.pybee',
+            'bundle': 'org.beeware',
+            'document_types': {
+                'deck': {
+                    'description': 'Podium Slide Deck',
+                    'extension': 'podium',
+                    'icon': 'icons/podium-deck',
+                    'url': 'https://beeware.org/project/projects/applications/podium/',
+                }
+            }
         },
         'macos': {
             'app_requires': [
-                'toga[macos]'
+                'toga-cocoa>=0.3.0.dev13'
             ],
             'icon': 'icons/podium',
         },
+        'linux': {
+            'app_requires': [
+                'toga-gtk>=0.3.0.dev13'
+            ],
+        }
     }
 )
